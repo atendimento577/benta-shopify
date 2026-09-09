@@ -1,0 +1,63 @@
+<section class="ben-info" id="produto">
+  <div class="ben-info-col" data-animate>
+    {% for block in section.blocks %}
+      {% if block.settings.side == 'esquerda' %}
+        <div class="ben-info-item">
+          <p class="ben-lbl">{{ block.settings.label }}</p>
+          <p class="ben-info-value">{{ block.settings.value }}</p>
+          <p class="ben-info-desc">{{ block.settings.description }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="ben-info-bottle" data-animate data-animate-delay="1">
+    <div class="ben-bottle-fx" data-parallax>
+      <div class="ben-bottle-float">
+        <img src="{{ 'benta-bottle.jpg' | asset_url }}" alt="Garrafa Benta, licor fino de coco" loading="lazy" data-bottle-tilt>
+        <div class="ben-bottle-shine" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ben-info-col" data-animate data-animate-delay="2">
+    {% for block in section.blocks %}
+      {% if block.settings.side == 'direita' %}
+        <div class="ben-info-item">
+          <p class="ben-lbl">{{ block.settings.label }}</p>
+          <p class="ben-info-value">{{ block.settings.value }}</p>
+          <p class="ben-info-desc">{{ block.settings.description }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Grid de informações",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "select", "id": "side", "label": "Lado", "options": [ {"value": "esquerda", "label": "Esquerda"}, {"value": "direita", "label": "Direita"} ], "default": "esquerda" },
+        { "type": "text", "id": "label", "label": "Selo" },
+        { "type": "text", "id": "value", "label": "Valor" },
+        { "type": "textarea", "id": "description", "label": "Descrição" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "item", "settings": { "side": "esquerda", "label": "O QUE É", "value": "Licor fino de coco", "description": "Cremoso, doce na medida e fácil de beber. O gosto da batida de coco tradicional." } },
+      { "type": "item", "settings": { "side": "esquerda", "label": "TEOR ALCOÓLICO", "value": "15% Alc. Vol.", "description": "Base de vodka triplamente destilada, limpa o bastante para o coco ser o protagonista." } },
+      { "type": "item", "settings": { "side": "esquerda", "label": "O DIFERENCIAL", "value": "Sem lactose", "description": "Ninguém precisa recusar a rodada por causa de restrição alimentar." } },
+      { "type": "item", "settings": { "side": "direita", "label": "VOLUME", "value": "750 ml", "description": "Garrafa de vidro com acabamento matte, sem rótulo convencional." } },
+      { "type": "item", "settings": { "side": "direita", "label": "ORIGEM DO COCO", "value": "Coco do Nordeste", "description": "Coco brasileiro de verdade, com procedência conhecida." } },
+      { "type": "item", "settings": { "side": "direita", "label": "COMO SERVIR", "value": "Bem gelado", "description": "Direto do freezer, em shot ou como base de batida. Não precisa de mistura." } }
+    ]
+  },
+  "presets": [{ "name": "Grid de informações" }]
+}
+{% endschema %}

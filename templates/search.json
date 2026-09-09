@@ -1,8 +1,6 @@
 {
   "sections": {
-    "search": {
-      "type": "main-search"
-    }
+    "main": { "type": "main-search" }
   },
-  "order": ["search"]
+  "order": ["main"]
 }

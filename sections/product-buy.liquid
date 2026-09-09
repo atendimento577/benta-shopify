@@ -1,0 +1,59 @@
+{% assign p = section.settings.product %}
+<section class="ben-buy" id="comprar">
+  <div class="ben-buy-media" data-animate>
+    <div class="ben-bottle-fx" data-parallax>
+      <div class="ben-bottle-float">
+        {% if p != blank and p.featured_image %}
+          <img src="{{ p.featured_image | image_url: width: 1000 }}" alt="{{ p.title | escape }}" loading="lazy" data-bottle-tilt>
+        {% else %}
+          <img src="{{ 'benta-bottle.jpg' | asset_url }}" alt="Benta, licor fino de coco" loading="lazy" data-bottle-tilt>
+        {% endif %}
+        <div class="ben-bottle-shine" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ben-buy-info" data-animate data-animate-delay="1">
+    <p class="ben-eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="ben-dl">{% if p != blank %}{{ p.title }}{% else %}Benta — Licor Fino de Coco{% endif %}</h2>
+    <p class="ben-buy-desc">{{ section.settings.description }}</p>
+
+    {% if p != blank %}
+      <p class="ben-price">{{ p.price | money }}</p>
+      {% form 'product', p %}
+        <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+        <div class="ben-qty">
+          <button type="button" class="ben-qty-btn" data-qty-minus>-</button>
+          <input type="number" name="quantity" value="1" min="1" class="ben-qty-input">
+          <button type="button" class="ben-qty-btn" data-qty-plus>+</button>
+        </div>
+        <button type="submit" class="ben-btn ben-btn-full" {% if p.selected_or_first_available_variant.available == false %}disabled{% endif %}>
+          {% if p.selected_or_first_available_variant.available %}Adicionar ao carrinho{% else %}Esgotado{% endif %}
+        </button>
+      {% endform %}
+    {% else %}
+      <p class="ben-price">R$ 89,90</p>
+      <a class="ben-btn ben-btn-full" href="{{ routes.all_products_collection_url }}">Ver na loja</a>
+      <p class="ben-note">Selecione o produto Benta nas configurações desta seção, no editor de temas.</p>
+    {% endif %}
+
+    <ul class="ben-buy-tags">
+      <li>Sem lactose</li>
+      <li>750 ml</li>
+      <li>15% Alc. Vol.</li>
+      <li>Coco do Nordeste</li>
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comprar",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Produto Benta" },
+    { "type": "text", "id": "eyebrow", "label": "Selo", "default": "LEVE A BENTA PRA CASA" },
+    { "type": "textarea", "id": "description", "label": "Descrição curta", "default": "Uma batida de coco cremosa na medida certa, feita com coco de verdade e sem uma gota de lactose. Sirva bem gelada, em shot ou na batida." }
+  ],
+  "presets": [{ "name": "Comprar" }]
+}
+{% endschema %}

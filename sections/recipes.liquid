@@ -1,0 +1,86 @@
+<section class="ben-recipes" id="receitas">
+  <p class="ben-lbl" data-animate>{{ section.settings.eyebrow }}</p>
+  <h2 class="ben-dl" data-animate data-animate-delay="1">{{ section.settings.heading }}</h2>
+
+  <div class="ben-recipe-list">
+    {% for block in section.blocks %}
+      <div class="ben-recipe" data-animate data-animate-delay="{{ forloop.index }}">
+        <button type="button" class="ben-recipe-summary" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="ben-recipe-{{ block.id }}">
+          <span class="ben-recipe-name">{{ block.settings.name }}</span>
+          <span class="ben-recipe-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="ben-recipe-collapse" id="ben-recipe-{{ block.id }}">
+          <div class="ben-recipe-body">
+            <div class="ben-recipe-body-inner">
+              <p class="ben-recipe-desc">{{ block.settings.description }}</p>
+              <div class="ben-recipe-cols">
+                <div>
+                  <p class="ben-lbl">Ingredientes</p>
+                  {{ block.settings.ingredients }}
+                </div>
+                <div>
+                  <p class="ben-lbl">Modo de preparo</p>
+                  {{ block.settings.steps }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Receitas",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Selo", "default": "AS RECEITAS" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Três serves, do mais simples ao mais elaborado." }
+  ],
+  "blocks": [
+    {
+      "type": "recipe",
+      "name": "Receita",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Nome" },
+        { "type": "textarea", "id": "description", "label": "Descrição curta" },
+        { "type": "richtext", "id": "ingredients", "label": "Ingredientes (lista)" },
+        { "type": "richtext", "id": "steps", "label": "Modo de preparo (lista numerada)" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "recipe",
+        "settings": {
+          "name": "Shot de Benta",
+          "description": "O gesto âncora da marca. Simples de propósito: não precisa de preparo, de copo especial nem de bartender.",
+          "ingredients": "<ul><li>50 ml de licor de coco Benta, bem gelado</li></ul>",
+          "steps": "<ol><li>Sirva direto do freezer, na dose.</li></ol>"
+        }
+      },
+      {
+        "type": "recipe",
+        "settings": {
+          "name": "Batida de Coco",
+          "description": "A receita que a marca devolve pronta. Cremosa, gelada e sem lactose no licor.",
+          "ingredients": "<ul><li>75 ml de licor de coco Benta</li><li>30 ml de leite de coco, de preferência natural e integral</li><li>30 ml de leite condensado, normal ou zero lactose</li><li>1 xícara de gelo em cubos</li><li>Coco ralado fresco ou queimado para decorar, opcional</li></ul>",
+          "steps": "<ol><li>Adicione o licor, o leite de coco, o leite condensado e o gelo no liquidificador ou na coqueteleira.</li><li>Bata vigorosamente até obter textura homogênea e cremosa, cerca de 15 segundos na coqueteleira ou 10 no liquidificador.</li><li>Sirva em copo alto ou taça de haste curta.</li><li>Finalize polvilhando um pouco de coco ralado por cima.</li></ol>"
+        }
+      },
+      {
+        "type": "recipe",
+        "settings": {
+          "name": "Maracanaú Sour",
+          "description": "Um drinque mais frutado, que explora a tensão entre o dulçor do coco e a acidez das frutas tropicais.",
+          "ingredients": "<ul><li>50 ml de licor de coco Benta</li><li>30 ml de suco de abacaxi natural</li><li>15 ml de suco de limão taiti espremido na hora</li><li>Gelo</li><li>Folhas de hortelã para decorar</li></ul>",
+          "steps": "<ol><li>Na coqueteleira, junte o licor, o suco de abacaxi, o suco de limão e o gelo.</li><li>Bata com força por 10 a 12 segundos, para gelar bem e criar uma leve espuma.</li><li>Coe para um copo baixo com gelo novo.</li><li>Bata uma folha de hortelã na palma da mão para liberar os aromas e posicione sobre o drinque.</li></ol>"
+        }
+      }
+    ]
+  },
+  "presets": [{ "name": "Receitas" }]
+}
+{% endschema %}
