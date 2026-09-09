@@ -97,7 +97,24 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .ben-info-value{font-family:var(--display);font-weight:600;font-size:clamp(1.5rem,2.4vw,2.1rem);margin:.25rem 0 .5rem}
 .ben-info-desc{color:var(--grafite);font-size:.95rem}
 .ben-info-bottle{display:flex;justify-content:center}
-.ben-info-bottle img{max-height:560px;width:auto;border-radius:20px}
+.ben-info-bottle img{max-height:560px;width:auto}
+
+/* efeitos especiais na garrafa: flutuação, sombra, brilho e tilt 3D ao mouse */
+.ben-bottle-fx{position:relative;display:flex;justify-content:center}
+.ben-bottle-fx::after{content:'';position:absolute;left:50%;bottom:-2%;width:56%;height:8%;
+  background:radial-gradient(ellipse at center, rgba(23,18,15,.32), transparent 72%);
+  transform:translateX(-50%);filter:blur(3px);animation:ben-bottle-shadow 5.5s ease-in-out infinite}
+.ben-bottle-float{position:relative;overflow:hidden;border-radius:22px;perspective:1000px;
+  animation:ben-bottle-float 5.5s ease-in-out infinite}
+.ben-bottle-float img{transition:transform .5s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.ben-bottle-shine{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.6) 48%,transparent 60%);
+  background-size:220% 220%;background-position:-60% -60%;opacity:0}
+.ben-bottle-float.ben-shine-play .ben-bottle-shine,
+.ben-bottle-float:hover .ben-bottle-shine{opacity:1;animation:ben-bottle-shine 1.6s ease}
+@keyframes ben-bottle-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes ben-bottle-shadow{0%,100%{transform:translateX(-50%) scale(1);opacity:.6}50%{transform:translateX(-50%) scale(.8);opacity:.34}}
+@keyframes ben-bottle-shine{from{background-position:-60% -60%}to{background-position:160% 160%}}
 
 /* história - editorial escura */
 .ben-story{background:var(--ink);color:#fff;padding:clamp(4rem,10vw,8rem) clamp(1.2rem,6vw,6rem);text-align:center}
@@ -110,7 +127,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .ben-buy{display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center;
   padding:clamp(3rem,7vw,6rem) clamp(1.2rem,5vw,4rem);background:var(--creme)}
 @media(min-width:900px){.ben-buy{grid-template-columns:.9fr 1.1fr}}
-.ben-buy-media img{border-radius:24px;max-height:640px;margin:0 auto}
+.ben-buy-media img{max-height:640px;margin:0 auto}
 .ben-buy-desc{color:var(--grafite);max-width:44ch;margin-bottom:1.4rem}
 .ben-price{font-family:var(--display);font-weight:600;font-size:2rem;color:var(--laranja-x)}
 .ben-qty{display:inline-flex;align-items:center;border:1.5px solid var(--linha);border-radius:100px;overflow:hidden;margin-top:1rem}
@@ -173,4 +190,8 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   .ben-marquee-track{animation:none}
   .ben-header{transition:none}
   [data-parallax]{transform:none!important}
+  .ben-bottle-float,.ben-bottle-fx::after{animation:none}
+  .ben-bottle-float img{transition:none}
+  .ben-bottle-float.ben-shine-play .ben-bottle-shine,
+  .ben-bottle-float:hover .ben-bottle-shine{animation:none;opacity:0}
 }

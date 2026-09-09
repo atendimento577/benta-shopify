@@ -1,10 +1,15 @@
 <section class="ben-buy" id="comprar" style="min-height:80vh">
   <div class="ben-buy-media" data-animate>
-    {% if product.featured_image %}
-      <img src="{{ product.featured_image | image_url: width: 1000 }}" alt="{{ product.title | escape }}">
-    {% else %}
-      <img src="{{ 'benta-bottle.jpg' | asset_url }}" alt="{{ product.title | escape }}">
-    {% endif %}
+    <div class="ben-bottle-fx" data-parallax>
+      <div class="ben-bottle-float">
+        {% if product.featured_image %}
+          <img src="{{ product.featured_image | image_url: width: 1000 }}" alt="{{ product.title | escape }}" data-bottle-tilt>
+        {% else %}
+          <img src="{{ 'benta-bottle.jpg' | asset_url }}" alt="{{ product.title | escape }}" data-bottle-tilt>
+        {% endif %}
+        <div class="ben-bottle-shine" aria-hidden="true"></div>
+      </div>
+    </div>
   </div>
   <div class="ben-buy-info" data-animate data-animate-delay="1">
     <p class="ben-eyebrow">LICOR FINO DE COCO</p>

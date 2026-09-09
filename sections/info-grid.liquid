@@ -12,8 +12,11 @@
   </div>
 
   <div class="ben-info-bottle" data-animate data-animate-delay="1">
-    <div data-parallax>
-      <img src="{{ 'benta-bottle.jpg' | asset_url }}" alt="Garrafa Benta, licor fino de coco" loading="lazy">
+    <div class="ben-bottle-fx" data-parallax>
+      <div class="ben-bottle-float">
+        <img src="{{ 'benta-bottle.jpg' | asset_url }}" alt="Garrafa Benta, licor fino de coco" loading="lazy" data-bottle-tilt>
+        <div class="ben-bottle-shine" aria-hidden="true"></div>
+      </div>
     </div>
   </div>
 

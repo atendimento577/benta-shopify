@@ -92,7 +92,34 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         btn.addEventListener('mouseleave', function () { btn.style.transform = ''; });
       });
+
+      // Garrafa: leve inclinação 3D acompanhando o cursor
+      document.querySelectorAll('[data-bottle-tilt]').forEach(function (img) {
+        img.addEventListener('mousemove', function (e) {
+          var r = img.getBoundingClientRect();
+          var px = (e.clientX - r.left) / r.width;
+          var py = (e.clientY - r.top) / r.height;
+          var rx = (0.5 - py) * 14;
+          var ry = (px - 0.5) * 14;
+          img.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) scale(1.04)';
+        });
+        img.addEventListener('mouseleave', function () { img.style.transform = ''; });
+      });
     }
+  }
+
+  // Garrafa: brilho desliza uma vez quando entra na tela
+  var bottleEls = document.querySelectorAll('.ben-bottle-float');
+  if (bottleEls.length && 'IntersectionObserver' in window) {
+    var bottleIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('ben-shine-play');
+          bottleIo.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    bottleEls.forEach(function (el) { bottleIo.observe(el); });
   }
 
   // Adicionar ao carrinho via AJAX, com aviso e fallback nativo se falhar
