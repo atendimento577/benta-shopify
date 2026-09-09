@@ -14,17 +14,31 @@
 </head>
 <body>
 
+  {% if template.name == 'index' %}
+    {% assign home_anchor = '' %}
+  {% else %}
+    {% assign home_anchor = routes.root_url %}
+  {% endif %}
+  {% if template.name == 'index' or template.name == 'product' %}
+    {% assign comprar_href = '#comprar' %}
+  {% else %}
+    {% assign comprar_href = routes.root_url | append: '#comprar' %}
+  {% endif %}
+
   <header class="ben-header" data-animate>
     <a href="{{ routes.root_url }}" class="ben-logo">BENTA</a>
     <nav class="ben-nav">
-      <a href="#produto">Produto</a>
-      <a href="#receitas">Receitas</a>
-      <a href="#historia">A história</a>
+      <a href="{{ home_anchor }}#produto">Produto</a>
+      <a href="{{ home_anchor }}#receitas">Receitas</a>
+      <a href="{{ home_anchor }}#historia">A história</a>
     </nav>
-    <a href="{{ routes.cart_url }}" class="ben-cart" aria-label="Carrinho">
-      Carrinho
-      <span class="ben-cart-count">{{ cart.item_count }}</span>
-    </a>
+    <div class="ben-header-actions">
+      <a href="{{ comprar_href }}" class="ben-btn ben-btn-sm">Comprar</a>
+      <a href="{{ routes.cart_url }}" class="ben-cart" aria-label="Carrinho, {{ cart.item_count }} {% if cart.item_count == 1 %}item{% else %}itens{% endif %}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="ben-cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
   </header>
 
   <main>
@@ -41,6 +55,8 @@
       <span>Consuma com moderação. Venda proibida para menores de 18 anos.</span>
     </div>
   </footer>
+
+  <div class="ben-toast" id="ben-toast" role="status" aria-live="polite"></div>
 
   {{ 'theme.js' | asset_url | script_tag }}
 </body>

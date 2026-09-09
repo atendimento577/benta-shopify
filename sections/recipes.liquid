@@ -4,25 +4,29 @@
 
   <div class="ben-recipe-list">
     {% for block in section.blocks %}
-      <details class="ben-recipe" data-animate data-animate-delay="{{ forloop.index }}" {% if forloop.first %}open{% endif %}>
-        <summary>
+      <div class="ben-recipe" data-animate data-animate-delay="{{ forloop.index }}">
+        <button type="button" class="ben-recipe-summary" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="ben-recipe-{{ block.id }}">
           <span class="ben-recipe-name">{{ block.settings.name }}</span>
-          <span class="ben-recipe-toggle">+</span>
-        </summary>
-        <div class="ben-recipe-body">
-          <p class="ben-recipe-desc">{{ block.settings.description }}</p>
-          <div class="ben-recipe-cols">
-            <div>
-              <p class="ben-lbl">Ingredientes</p>
-              {{ block.settings.ingredients }}
-            </div>
-            <div>
-              <p class="ben-lbl">Modo de preparo</p>
-              {{ block.settings.steps }}
+          <span class="ben-recipe-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="ben-recipe-collapse" id="ben-recipe-{{ block.id }}">
+          <div class="ben-recipe-body">
+            <div class="ben-recipe-body-inner">
+              <p class="ben-recipe-desc">{{ block.settings.description }}</p>
+              <div class="ben-recipe-cols">
+                <div>
+                  <p class="ben-lbl">Ingredientes</p>
+                  {{ block.settings.ingredients }}
+                </div>
+                <div>
+                  <p class="ben-lbl">Modo de preparo</p>
+                  {{ block.settings.steps }}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </details>
+      </div>
     {% endfor %}
   </div>
 </section>

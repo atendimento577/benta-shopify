@@ -1,11 +1,13 @@
 {% assign p = section.settings.product %}
 <section class="ben-buy" id="comprar">
   <div class="ben-buy-media" data-animate>
-    {% if p != blank and p.featured_image %}
-      <img src="{{ p.featured_image | image_url: width: 1000 }}" alt="{{ p.title | escape }}" loading="lazy">
-    {% else %}
-      <img src="{{ 'benta-bottle.jpg' | asset_url }}" alt="Benta, licor fino de coco" loading="lazy">
-    {% endif %}
+    <div data-parallax>
+      {% if p != blank and p.featured_image %}
+        <img src="{{ p.featured_image | image_url: width: 1000 }}" alt="{{ p.title | escape }}" loading="lazy">
+      {% else %}
+        <img src="{{ 'benta-bottle.jpg' | asset_url }}" alt="Benta, licor fino de coco" loading="lazy">
+      {% endif %}
+    </div>
   </div>
 
   <div class="ben-buy-info" data-animate data-animate-delay="1">

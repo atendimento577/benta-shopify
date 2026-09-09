@@ -1,0 +1,26 @@
+<section class="ben-fallback" data-animate>
+  <p class="ben-eyebrow">BUSCA</p>
+  <h1 class="ben-dl">A Benta é um produto só — e ele está aqui do lado.</h1>
+  <p class="ben-fallback-sub">Ainda não temos um catálogo pra vasculhar por aqui: a loja tem uma garrafa, o licor fino de coco Benta, e ela está a um clique.</p>
+
+  {% if search.performed and search.results_count > 0 %}
+    <div class="ben-fallback-results">
+      {% for item in search.results %}
+        <a href="{{ item.url }}" class="ben-fallback-result">{{ item.title }}</a>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <a href="{{ routes.root_url }}#comprar" class="ben-btn">Ver o licor Benta</a>
+
+  {% form 'search' %}
+    <div class="ben-fallback-search">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Buscar mesmo assim" aria-label="Buscar na loja">
+      <button type="submit" class="ben-btn ben-btn-outline">Buscar</button>
+    </div>
+  {% endform %}
+</section>
+
+{% schema %}
+{ "name": "Busca" }
+{% endschema %}

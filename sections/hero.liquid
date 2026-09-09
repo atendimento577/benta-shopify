@@ -6,11 +6,13 @@
     <a href="#produto" class="ben-btn">{{ section.settings.button_label }}</a>
   </div>
   <div class="ben-hero-media" data-animate data-animate-delay="1">
-    {% if section.settings.image != blank %}
-      <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.heading | escape }}" loading="eager" width="1200" height="{{ 1200 | divided_by: section.settings.image.aspect_ratio }}">
-    {% else %}
-      <img src="{{ 'benta-hero-scene.jpg' | asset_url }}" alt="Benta, licor fino de coco">
-    {% endif %}
+    <div data-parallax>
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.heading | escape }}" loading="eager" width="1200" height="{{ 1200 | divided_by: section.settings.image.aspect_ratio }}">
+      {% else %}
+        <img src="{{ 'benta-hero-scene.jpg' | asset_url }}" alt="Benta, licor fino de coco">
+      {% endif %}
+    </div>
   </div>
 </section>
 
