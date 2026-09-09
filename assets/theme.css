@@ -1,0 +1,129 @@
+:root{
+  --laranja:#DC5D34;
+  --laranja-d:#B4441F;
+  --laranja-x:#7C2D13;
+  --laranja-l:#E88A69;
+  --rosa:#F8B9B7;
+  --rosa-w:#FDEDEB;
+  --papel:#FFFCFA;
+  --creme:#F9F4F0;
+  --areia:#F0E7E1;
+  --ink:#17120F;
+  --cinza:#8B817A;
+  --grafite:#4A423D;
+  --linha:#E6DBD4;
+  --display:'Fredoka',system-ui,sans-serif;
+  --accent:'Comfortaa',system-ui,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--papel);line-height:1.5;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul,ol{padding-left:1.1em}
+
+.ben-lbl{font-family:var(--accent);font-weight:700;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--laranja-d)}
+.ben-lbl-light{color:var(--rosa)}
+.ben-eyebrow{font-family:var(--accent);font-weight:700;font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--laranja-d);margin-bottom:.9rem}
+.ben-dl{font-family:var(--display);font-weight:600;font-size:clamp(1.9rem,4vw,3rem);line-height:1.12}
+
+/* animação de entrada no scroll */
+[data-animate]{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease}
+[data-animate].is-visible{opacity:1;transform:translateY(0)}
+[data-animate-delay="1"]{transition-delay:.12s}
+[data-animate-delay="2"]{transition-delay:.24s}
+[data-animate-delay="3"]{transition-delay:.36s}
+
+/* header */
+.ben-header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem clamp(1.2rem,4vw,3rem);background:rgba(255,252,250,.86);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--linha)}
+.ben-logo{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:.02em;color:var(--laranja)}
+.ben-nav{display:none;gap:2.2rem;font-family:var(--accent);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+.ben-nav a{opacity:.75;transition:opacity .2s}
+.ben-nav a:hover{opacity:1}
+@media(min-width:760px){.ben-nav{display:flex}}
+.ben-cart{display:flex;align-items:center;gap:.4rem;font-family:var(--accent);font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.ben-cart-count{display:inline-flex;align-items:center;justify-content:center;min-width:1.3em;height:1.3em;
+  border-radius:50%;background:var(--laranja);color:#fff;font-size:.68rem}
+
+/* botão */
+.ben-btn{display:inline-block;background:var(--laranja);color:#fff;font-family:var(--accent);font-weight:700;
+  font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;padding:1rem 2.2rem;border-radius:100px;
+  border:none;cursor:pointer;transition:transform .25s ease, background .25s ease}
+.ben-btn:hover{background:var(--laranja-d);transform:translateY(-2px)}
+.ben-btn-full{width:100%;text-align:center;margin-top:1rem}
+.ben-btn[disabled]{background:var(--cinza);cursor:not-allowed;transform:none}
+
+/* hero */
+.ben-hero{min-height:92vh;display:grid;grid-template-columns:1fr;align-items:center;gap:2rem;
+  padding:3rem clamp(1.2rem,5vw,4rem);background:linear-gradient(180deg,var(--rosa-w),var(--papel) 70%)}
+@media(min-width:900px){.ben-hero{grid-template-columns:1.05fr .95fr;min-height:100vh}}
+.ben-hero-title{font-family:var(--display);font-weight:600;font-size:clamp(2.6rem,7vw,5.2rem);line-height:1.04;margin:.3rem 0 1.3rem}
+.ben-hero-sub{max-width:38ch;color:var(--grafite);font-size:1.05rem;margin-bottom:1.8rem}
+.ben-hero-media img{border-radius:28px;width:100%;height:auto}
+
+/* marquee */
+.ben-marquee{overflow:hidden;background:var(--ink);padding:1.1rem 0;white-space:nowrap}
+.ben-marquee-track{display:inline-flex;gap:1.4rem;animation:ben-scroll 22s linear infinite;
+  font-family:var(--accent);font-weight:700;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rosa)}
+.ben-marquee-dot{color:var(--laranja-l)}
+@keyframes ben-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* info grid */
+.ben-info{display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center;
+  padding:clamp(3rem,7vw,6rem) clamp(1.2rem,5vw,4rem);max-width:1400px;margin:0 auto}
+@media(min-width:960px){.ben-info{grid-template-columns:1fr .8fr 1fr}}
+.ben-info-col{display:flex;flex-direction:column;gap:2.2rem}
+.ben-info-item{max-width:34ch}
+@media(min-width:960px){.ben-info-col:last-child .ben-info-item{margin-left:auto;text-align:right;max-width:34ch}}
+.ben-info-value{font-family:var(--display);font-weight:600;font-size:clamp(1.5rem,2.4vw,2.1rem);margin:.25rem 0 .5rem}
+.ben-info-desc{color:var(--grafite);font-size:.95rem}
+.ben-info-bottle{display:flex;justify-content:center}
+.ben-info-bottle img{max-height:560px;width:auto;border-radius:20px}
+
+/* história - editorial escura */
+.ben-story{background:var(--ink);color:#fff;padding:clamp(4rem,10vw,8rem) clamp(1.2rem,6vw,6rem);text-align:center}
+.ben-story-copy{max-width:56ch;margin:1.4rem auto 0;font-family:var(--display);font-weight:500;
+  font-size:clamp(1.15rem,2.1vw,1.5rem);line-height:1.55;color:var(--rosa-w)}
+.ben-story-copy p{margin-bottom:1.1rem}
+.ben-story-copy strong{color:#fff}
+
+/* comprar */
+.ben-buy{display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center;
+  padding:clamp(3rem,7vw,6rem) clamp(1.2rem,5vw,4rem);background:var(--creme)}
+@media(min-width:900px){.ben-buy{grid-template-columns:.9fr 1.1fr}}
+.ben-buy-media img{border-radius:24px;max-height:640px;margin:0 auto}
+.ben-buy-desc{color:var(--grafite);max-width:44ch;margin-bottom:1.4rem}
+.ben-price{font-family:var(--display);font-weight:600;font-size:2rem;color:var(--laranja-x)}
+.ben-qty{display:inline-flex;align-items:center;border:1.5px solid var(--linha);border-radius:100px;overflow:hidden;margin-top:1rem}
+.ben-qty-btn{background:none;border:none;width:2.6rem;height:2.6rem;font-size:1.1rem;cursor:pointer}
+.ben-qty-input{width:3rem;text-align:center;border:none;background:none;font-family:var(--body);font-size:1rem}
+.ben-buy-tags{list-style:none;display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem;padding:0}
+.ben-buy-tags li{background:var(--rosa-w);color:var(--laranja-x);font-family:var(--accent);font-weight:700;
+  font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:.5rem 1rem;border-radius:100px}
+.ben-note{font-size:.8rem;color:var(--cinza);margin-top:.6rem}
+
+/* receitas */
+.ben-recipes{padding:clamp(3rem,7vw,6rem) clamp(1.2rem,5vw,4rem);max-width:900px;margin:0 auto}
+.ben-recipe-list{margin-top:2rem;border-top:1px solid var(--linha)}
+.ben-recipe{border-bottom:1px solid var(--linha);padding:1.4rem 0}
+.ben-recipe summary{display:flex;align-items:center;justify-content:space-between;cursor:pointer;list-style:none}
+.ben-recipe summary::-webkit-details-marker{display:none}
+.ben-recipe-name{font-family:var(--display);font-weight:600;font-size:1.3rem}
+.ben-recipe-toggle{font-size:1.4rem;color:var(--laranja);transition:transform .25s}
+.ben-recipe[open] .ben-recipe-toggle{transform:rotate(45deg)}
+.ben-recipe-body{padding-top:1.2rem}
+.ben-recipe-desc{color:var(--grafite);margin-bottom:1.2rem;max-width:60ch}
+.ben-recipe-cols{display:grid;grid-template-columns:1fr;gap:1.4rem}
+@media(min-width:640px){.ben-recipe-cols{grid-template-columns:1fr 1fr}}
+.ben-recipe-cols ul,.ben-recipe-cols ol{color:var(--grafite);font-size:.95rem;margin-top:.4rem}
+
+/* footer */
+.ben-footer{background:var(--ink);color:var(--rosa-w);padding:3rem clamp(1.2rem,5vw,4rem) 1.6rem}
+.ben-footer-logo{font-family:var(--display);font-weight:700;font-size:1.6rem;color:#fff}
+.ben-footer-top p{margin-top:.5rem;color:var(--cinza)}
+.ben-footer-bottom{display:flex;flex-direction:column;gap:.4rem;margin-top:2rem;padding-top:1.2rem;
+  border-top:1px solid rgba(255,255,255,.12);font-size:.78rem;color:var(--cinza)}
+@media(min-width:640px){.ben-footer-bottom{flex-direction:row;justify-content:space-between}}

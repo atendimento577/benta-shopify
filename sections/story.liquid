@@ -1,0 +1,22 @@
+<section class="ben-story" id="historia">
+  <p class="ben-lbl ben-lbl-light" data-animate>{{ section.settings.eyebrow }}</p>
+  <div class="ben-story-copy" data-animate data-animate-delay="1">
+    {{ section.settings.text }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "História",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Selo", "default": "A HISTÓRIA DA BENTA" },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Benta é quem recebeu a bênção. A dela tem nome: o dom de juntar.</p><p>De fazer a mesa esticar. A casa encher. A conversa engatar sem ninguém precisar puxar assunto. De transformar um sábado qualquer na noite que todo mundo lembra depois. Isso não se aprende e não se força. Ou a pessoa tem, ou não tem. Ela tem.</p><p>Você já a conheceu. Talvez até tinha outro nome.</p><p>É a que chega e o ar fica diferente. Não faz nada de especial: simplesmente está lá de verdade, enquanto todo mundo está ocupado sendo o que acha que deveria ser. Isso já é suficiente pra mudar tudo.</p><p>Não segue script. Não por rebeldia, mas porque nunca fez sentido celebrar por obrigação. Quando ela brinda, todo mundo sente a diferença.</p><p>Tem humor que não machuca. Leveza que vem de dentro. E aquela coisa rara em qualquer pessoa: a capacidade de fazer a roda parecer completa só de estar nela.</p><p><strong>Benta não foi inventada. Foi reconhecida.</strong></p><p>Benta é o nome dela, e talvez o seu também.</p>"
+    }
+  ],
+  "presets": [{ "name": "História" }]
+}
+{% endschema %}

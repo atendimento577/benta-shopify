@@ -1,0 +1,29 @@
+<section class="ben-hero" id="topo">
+  <div class="ben-hero-copy" data-animate>
+    <p class="ben-eyebrow">{{ section.settings.eyebrow }}</p>
+    <h1 class="ben-hero-title">{{ section.settings.heading }}</h1>
+    <p class="ben-hero-sub">{{ section.settings.subheading }}</p>
+    <a href="#produto" class="ben-btn">{{ section.settings.button_label }}</a>
+  </div>
+  <div class="ben-hero-media" data-animate data-animate-delay="1">
+    {% if section.settings.image != blank %}
+      <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.heading | escape }}" loading="eager" width="1200" height="{{ 1200 | divided_by: section.settings.image.aspect_ratio }}">
+    {% else %}
+      <img src="{{ 'benta-hero-scene.jpg' | asset_url }}" alt="Benta, licor fino de coco">
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagem principal" },
+    { "type": "text", "id": "eyebrow", "label": "Selo pequeno", "default": "LICOR FINO DE COCO" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Benta não é quem chega." },
+    { "type": "textarea", "id": "subheading", "label": "Subtítulo", "default": "É o que muda quando ela chega. Uma batida de coco cremosa, sem lactose, feita pra esticar a mesa." },
+    { "type": "text", "id": "button_label", "label": "Texto do botão", "default": "Levar a Benta" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

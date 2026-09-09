@@ -1,0 +1,24 @@
+<div class="ben-marquee">
+  <div class="ben-marquee-track">
+    {% for i in (1..2) %}
+      <span>{{ section.settings.text }}</span>
+      <span class="ben-marquee-dot">&#10022;</span>
+      <span>{{ section.settings.text }}</span>
+      <span class="ben-marquee-dot">&#10022;</span>
+      <span>{{ section.settings.text }}</span>
+      <span class="ben-marquee-dot">&#10022;</span>
+      <span>{{ section.settings.text }}</span>
+      <span class="ben-marquee-dot">&#10022;</span>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Faixa de texto",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Texto em loop", "default": "SEM LACTOSE — COCO DO NORDESTE — BEM GELADO — 750ML" }
+  ],
+  "presets": [{ "name": "Faixa de texto" }]
+}
+{% endschema %}
